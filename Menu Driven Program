@@ -1,0 +1,274 @@
+#include<iostream>
+#include<conio.h>
+#include<iomanip>
+#include<string>
+using namespace std;
+
+
+int main()
+{
+	char ch;
+	string un="admin001";
+	string pw="123123";
+	int e;
+	for(int i=1; i<=3; i++)
+	{
+		string username;
+		string password;
+		cout<<"Enter your username: ";
+		cin>>username;
+		cout<<"Enter you password: ";
+		ch = getch();
+        while (ch != 13)
+		{
+            password.push_back(ch);
+            cout << "*";
+            ch = getch();
+        }
+        cout<<endl;
+		if(username!=un || password!=pw)
+		{
+			cout<<"The login you enter is wrong. Please try again."<<endl;
+			if(i==3)
+			{
+				cout<<"You have reached your limits. Try again after 30sec."<<endl;
+				exit(0);
+			}
+			
+		}
+		else
+		{
+			cout<<"Welcome!!!"<<endl;
+			break;
+		}
+	}
+	
+	
+	system("cls");
+
+	
+	int size;
+	cout<<"Enter the no. of element you want to process: ";
+	cin>>size;
+	size=size-1;
+	char chr='y';
+	int arr[size];
+	for(int i=1; chr=='y'; i++)
+	{
+		int n; 
+		cout<<endl<<endl
+		<<"-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
+		<<endl<<endl
+		<<"MENU"<<endl
+		<<"1 to enter the data(Selecting this option is a must)"<<endl
+		<<"2 to sort the data in assending order"<<endl
+		<<"3 to sort the data in decending order"<<endl
+		<<"4 to update data"<<endl
+		<<"5 to find an element"<<endl
+		<<"6 to delete element"<<endl
+		<<"7 to transverse"<<endl
+		<<"8 to find the largest no."<<endl
+		<<"9 to find the smallest no."<<endl
+		<<"10 to find the 2nd largest no."<<endl
+		<<"11 to find the 3rd highest no."<<endl
+		<<"12 to add all the elements."<<endl
+		<<"13 to add elements"<<endl
+		<<"14 to check how many times you have perform the operation"<<endl
+		<<"15 to exit program."<<endl
+		<<endl<<"Enter your choice: ";
+		cin>>n;
+		cout<<endl;
+		if(i==1 && n!=1)
+		{
+			cout<<"Invalid operation!!!!"<<"First press 1 to add data on which the operations will be proformed."<<endl;
+			continue;
+		}
+		else if(n==1)
+		{
+			//cout<<"please start entring the elements: "<<endl;
+			for(int i=0; i<=size; i++)
+			{
+				cout<<"Enter value: ";
+				cin>>arr[i];
+				cout<<endl;
+			}
+		}
+		else if(n==2)
+		{
+			for(int i=0; i<=size-1; i++)
+			{
+				for(int j=0; j<=size-i-1; j++)
+				{
+					if(arr[j]>arr[j+1])
+					{
+						int swap;
+						swap=arr[j];
+						arr[j]=arr[j+1];
+						arr[j+1]=swap;
+					}
+				}
+			}
+			cout<<endl<<"Your data has been sorted in assecding order."<<endl;
+		}
+		else if(n==3)
+		{
+			for(int i=size; i>=0; i--)
+			{
+  				for(int j=i-1 ; j>=0; j--)
+				{
+        		    if(arr[j]<arr[i])
+					{
+                		int temp = arr[i];
+         		    	arr[i] = arr[j];
+           			    arr[j] = temp;
+        		    }
+   			    }
+   			}
+			cout<<endl<<"Your data has been sorted in decending order."<<endl;
+		}
+		
+		else if(n==4)
+		{
+			int pre,post;
+			cout<<"Enter the index of element you want to update: ";
+			cin>>pre;
+			cout<<"Enter the new element: ";
+			cin>>post;
+			pre=pre-1;
+			arr[pre]=post;
+//			for(int i=0; i<=size; i++)
+//			{
+//				if(arr[i]==pre)
+//				{
+//					arr[i]=post;
+//				}
+//				else if(i==size )
+//				{
+//					cout<<"The element you enter to update don't exist."<<endl;
+//				}
+//			}
+			cout<<endl<<"Your data has been updated."<<endl;
+		}
+		else  if(n==5)
+		{
+			int no;
+			cout<<"Enter the number you want to find: ";
+			cin>>no;
+			for(int i=0; i<=size; i++)
+			{
+				if(arr[i]==no)
+				{
+					cout<<endl<<"The number you want to find is on index "<<i+1<<endl;
+				}
+			}
+		}
+		else if(n==6)
+		{
+			int num;
+			cout<<"Enter the index of element you want to delete: ";
+			cin>>num;
+			num=num-1;
+			for(int i=num; i<=size; i++)
+			{
+				arr[i]=arr[i+1];
+			}
+			size=size-1;
+			cout<<endl<<"The number is deleted."<<endl;	
+		}
+		else if(n==7)
+		{
+			cout<<"Index no		value"<<endl;
+			for(int i=0; i<=size; i++)
+			{
+				cout<<i+1<<"			"<<arr[i]<<endl;
+			}
+		}
+		else if(n==8)
+		{
+			int max=0;
+			for(int i=0; i<=size; i++)
+			{
+				if(arr[i]>max)
+				{
+					max=arr[i];
+				}		
+			}
+			cout<<endl<<"The maximum number in the data is "<<max<<"."<<endl;
+		}
+		else if(n==9)
+		{
+			int min=arr[0];
+			for(int i=0; i<=size; i++)
+			{
+				if(arr[i]<min)
+				{
+					min=arr[i];
+				}
+			}
+			cout<<endl<<"The minimum number in the data is "<<min<<"."<<endl;
+		}
+		else if(n==10)
+		{
+			int max=arr[0];
+			int smax=arr[0];
+			for(int i=0; i<=size; i++)
+			{
+				if(arr[i]>max)
+				smax=max;
+				max=arr[i];
+			}
+			cout<<endl<<"The second maximum number in the data is "<<smax<<"."<<endl;
+		}
+		else if(n==11)
+		{
+			int max=arr[0];
+			int smax=0;
+			int tmax=0;
+			for(int i=0; i<=size; i++)
+			{
+				if(arr[i]>max && arr[i]>smax)
+				tmax=smax;
+				smax=max;
+				max=arr[i];
+			}
+			cout<<endl<<"The third maximum number in the data is "<<tmax<<"."<<endl;
+		}
+		else if(n==12)
+		{
+			int sum=0;
+			for(int i=0; i<=size; i++)
+			{
+				sum=sum+arr[i];
+			}
+			cout<<endl<<"The sum of all the elements are: "<<sum<<endl;
+		}
+		else if(n==13)
+		{
+			int no,sum=0,index;
+			cout<<"Enter the no.of elements you want to add: ";
+			cin>>no;
+			for(int i=0; i<no; i++)
+			{
+				cout<<"Enter the index of "<<i+1<<" elements you want to add: ";
+				cin>>index;
+				sum=sum+arr[index-1];
+			}
+			cout<<endl<<"The sum of the elements are: "<<sum<<endl;
+		}
+		else if(n==14)
+		{
+			cout<<endl<<"The no of time you perform operations on data are: "<<i<<endl;
+		}
+		else if(n==15)
+		{
+			exit(0);
+		}
+		else
+		{
+			cout<<endl<<"INVALID INPUT!!!"<<endl;
+		}
+	}
+
+
+	return 0;
+}
