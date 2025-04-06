@@ -1,0 +1,1294 @@
+#include<iostream>
+#include<ctime>
+#include<stdlib.h> 
+#include<string>
+#include<conio.h> 
+#include <windows.h>
+#include <vector>
+#include <thread>
+#include <cctype>
+#include <chrono>
+#include <cstdlib>
+
+
+
+using namespace std;
+//the start of libabry.....
+
+					//function for animation like text by text appearance
+void printWithAnimation(const string& text, int delayMilliseconds)
+{
+	for (char c : text)
+	{
+		cout << c;
+		cout.flush();
+		this_thread::sleep_for(chrono::milliseconds(delayMilliseconds));
+	}
+	cout << endl;
+}
+
+//For 3 2 1 start
+class numbers
+{
+public:
+	void setColor(int color)
+	{
+		system("color f0");
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+		SetConsoleTextAttribute(hConsole, color + (15 << 4));
+	}
+
+	void clearConsole()
+	{
+		system("CLS");
+	}
+
+	void gameBeginAnimation()
+	{
+		system("color f5");
+		system("cls");
+		string message = "\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\tAnd the game begins!";
+		for (size_t i = 0; i < message.length(); ++i)
+		{
+			cout << "\033[H";
+			cout << message.substr(0, i + 1);
+			Sleep(100);
+		}
+	}
+
+	vector<string> getAsciiArt(char c)
+	{
+		switch (toupper(c))
+		{
+		case '1':
+			return { "     1",
+					 "     1",
+					 "     1",
+					 "     1",
+					 "     1" };
+		case '2':
+			return { "222222",
+					  "     2",
+					  "222222",
+					  "2     ",
+					  "222222" };
+		case '3':
+			return { "333333",
+					  "     3",
+					  "333333",
+					  "     3",
+					  "333333" };
+
+			return { "      ",
+					 "      ",
+					 "      ",
+					 "      ",
+					 "      " };
+		}
+	}
+
+
+
+
+	void runAnimation(const string& text)
+	{
+		const int colors[] = { 1, 2, 3, 4, 5, 6 };
+		const int numColors = sizeof(colors) / sizeof(colors[0]);
+
+		for (char c : text)
+		{
+			clearConsole();
+
+			auto asciiArt = getAsciiArt(c);
+			for (int colorIdx = 0; colorIdx < 1; ++colorIdx)
+			{
+				setColor(colors[colorIdx]);
+				clearConsole();
+				cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+				for (const auto& line : asciiArt)
+				{
+
+					cout << "\t\t\t\t\t\t\t\t " << line << endl;
+
+				}
+				this_thread::sleep_for(chrono::milliseconds(200));
+			}
+		}
+		gameBeginAnimation();
+
+		system("cls");
+		system("color 5f");
+	}
+};
+
+
+
+//for the opening of the game and mini game
+class Animation
+{
+public:
+
+	void setColor(int color)
+	{
+		system("color f0");
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+		SetConsoleTextAttribute(hConsole, color + (15 << 4));
+	}
+
+	void clearConsole()
+	{
+		system("CLS");
+	}
+
+	vector<string> getAsciiArt(char c)
+	{
+		switch (toupper(c)) {
+		case 'A':
+			return { "   a   ",
+					 "  a a  ",
+					 " a   a ",
+					 " aaaaa ",
+					 " a   a " };
+		case 'B':
+			return { "bbbbb ",
+					 "b    b",
+					 "bbbbb ",
+					 "b    b",
+					 "bbbbb " };
+		case 'C':
+			return { " ccccc",
+					 "c     ",
+					 "c     ",
+					 "c     ",
+					 " ccccc" };
+		case 'D':
+			return { "ddddd ",
+					 "d    d",
+					 "d    d",
+					 "d    d",
+					 "ddddd " };
+		case 'E':
+			return { "eeeee",
+					 "e    ",
+					 "eee  ",
+					 "e    ",
+					 "eeeee" };
+		case 'F':
+			return { "fffff",
+					 "f    ",
+					 "ffff ",
+					 "f    ",
+					 "f    " };
+		case 'G':
+			return { " ggggg",
+					 "g     ",
+					 "g  ggg",
+					 "g    g",
+					 " ggggg" };
+		case 'H':
+			return { "h   h",
+					 "h   h",
+					 "hhhhh",
+					 "h   h",
+					 "h   h" };
+		case 'I':
+			return { "iiiii",
+					 "  i  ",
+					 "  i  ",
+					 "  i  ",
+					 "iiiii" };
+		case 'J':
+			return { "jjjjj",
+					 "    j",
+					 "    j",
+					 "j   j",
+					 " jjj " };
+		case 'K':
+			return { "k   k",
+					 "k  k ",
+					 "kkk  ",
+					 "k  k ",
+					 "k   k" };
+		case 'L':
+			return { "l    ",
+					 "l    ",
+					 "l    ",
+					 "l    ",
+					 "lllll" };
+		case 'M':
+			return { "m   m",
+					 "mm mm",
+					 "m m m",
+					 "m   m",
+					 "m   m" };
+		case 'N':
+			return { "n   n",
+					 "nn  n",
+					 "n n n",
+					 "n  nn",
+					 "n   n" };
+		case 'O':
+			return { " ooo ",
+					 "o   o",
+					 "o   o",
+					 "o   o",
+					 " ooo " };
+		case 'P':
+			return { "pppp ",
+					 "p   p",
+					 "pppp ",
+					 "p    ",
+					 "p    " };
+		case 'Q':
+			return { " qqq ",
+					 "q   q",
+					 "q   q",
+					 "q  qq",
+					 " qqqq" };
+		case 'R':
+			return { "rrrr ",
+					 "r   r",
+					 "rrrr ",
+					 "r  r ",
+					 "r   r" };
+		case 'S':
+			return { " sssss",
+					 "s     ",
+					 " sssss",
+					 "     s",
+					 " sssss" };
+		case 'T':
+			return { "ttttt",
+					 "  t  ",
+					 "  t  ",
+					 "  t  ",
+					 "  t  " };
+		case 'U':
+			return { "u   u",
+					 "u   u",
+					 "u   u",
+					 "u   u",
+					 " uuuu" };
+		case 'V':
+			return { "v   v",
+					 "v   v",
+					 " v v ",
+					 " v v ",
+					 "  v  " };
+		case 'W':
+			return { "w       w       w",
+					 " w     w w     w ",
+					 "  w   w   w   w  ",
+					 "   w w     w w   ",
+					 "    w       w    " };
+		case 'X':
+			return { "x   x",
+					 " x x ",
+					 "  x  ",
+					 " x x ",
+					 "x   x" };
+		case 'Y':
+			return { "y   y",
+					 " y y ",
+					 "  y  ",
+					 "  y  ",
+					 "  y  " };
+		case 'Z':
+			return { "zzzzz",
+					 "   z ",
+					 "  z  ",
+					 " z   ",
+					 "zzzzz" };
+
+		default:
+			return { "      ", "      ", "      ", "      ", "      " };
+		}
+	}
+
+	vector<string> generateAsciiArt(const string& text)
+	{
+		vector<string> rows(5, "");
+		for (char c : text)     //reange based loop( in c++ 11 version)
+		{
+			auto art = getAsciiArt(c);
+			for (int i = 0; i < 5; ++i)
+			{
+				rows[i] += art[i] + "  ";
+			}
+		}
+		return rows;
+	}
+
+	void displayAnimatedText(const vector<string>& asciiArt, int position)
+	{
+		for (const auto& row : asciiArt)
+		{
+			for (int i = 0; i < position; ++i)
+			{
+				cout << " ";
+			}
+
+			cout << row << endl;
+		}
+	}
+
+	void runAnimation(const string& text)
+	{
+		const int colors[] = { 1, 2, 3, 4, 5, 6 };
+		const int numColors = sizeof(colors) / sizeof(colors[0]);
+
+		for (char c : text)    // for thwe blinking of the text
+		{
+			clearConsole();
+
+			auto asciiArt = getAsciiArt(c);
+			for (int colorIdx = 0; colorIdx < 1; ++colorIdx)
+			{
+				setColor(colors[colorIdx]);
+
+				clearConsole();
+				cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+				for (const auto& line : asciiArt)
+				{
+
+					cout << "\t\t\t\t\t\t\t\t " << line << endl;
+
+				}
+				this_thread::sleep_for(chrono::milliseconds(5));
+			}
+		}
+
+		auto asciiArt = generateAsciiArt(text);
+		const int consoleWidth = 40;
+		int textPosition = 0;
+
+		for (int frame = 0; frame < 40; ++frame)    // for the travel of text from left to right
+		{
+			clearConsole();
+			cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+			int colorIndex = frame % numColors;
+			setColor(colors[colorIndex]);
+			displayAnimatedText(asciiArt, textPosition);
+
+			textPosition = (textPosition + 1) % consoleWidth;
+			this_thread::sleep_for(chrono::milliseconds(80));
+		}
+
+		clearConsole();
+	}
+};
+
+
+
+class GameIntro {
+private:
+	void printWithDelay(const std::string& text, int delay = 8)
+	{
+
+		for (char ch : text)
+		{
+			std::cout << ch;
+			Sleep(delay);
+		}
+	}
+
+	void flashColors(int times = 3)
+	{
+		for (int i = 0; i < times; ++i) {
+			system("color 1C");
+			this_thread::sleep_for(chrono::milliseconds(5));
+			system("color 27");
+			this_thread::sleep_for(chrono::milliseconds(5));
+			system("color 3C");
+			this_thread::sleep_for(chrono::milliseconds(5));
+			system("color 47");
+			this_thread::sleep_for(chrono::milliseconds(5));
+			system("color 5C");
+			this_thread::sleep_for(chrono::milliseconds(5));
+			system("color 67");
+			this_thread::sleep_for(chrono::milliseconds(5));
+		}
+	}
+
+public:
+	void display()
+	{
+
+		system("cls");
+
+
+
+		flashColors(1);
+		system("color f5");
+
+		std::cout << std::endl << std::endl << std::endl << std::endl << endl << endl << endl << endl;
+		printWithDelay("                                      ____________________________________________________________________           \n");
+		printWithDelay("                                      |                                                                  |           \n");
+		printWithDelay("                                      |                           GUESS THE NUMBER                       |           \n");
+		printWithDelay("                                      |        You are about to enter an exciting world of guessing...   |           \n");
+		printWithDelay("                                      |           Developed by:                                          |           \n");
+		printWithDelay("                                      |                     --->  Tatheer Sabir                          |           \n");
+		printWithDelay("                                      |                     --->  Amna Batool                            |           \n");
+		printWithDelay("                                      |__________________________________________________________________|           \n");
+		printWithDelay("                                                 \n", 5);
+
+		std::cout << std::endl << std::endl;
+		printWithDelay("Press any key to continue...");
+
+		_getch();
+		system("cls");
+	}
+};
+
+
+
+
+//animation for you lost
+class CollapseAnimation
+{
+private:
+	string message;
+
+	void clearScreen()
+	{
+		cout << "\033[H\033[J";
+	}
+	void resetColor()   //black white
+	{
+		cout << "\033[0m";
+	}
+	void setRandomColor()
+	{
+		cout << "\033[" << (31 + rand() % 7) << "m";
+	}
+
+	void collapseEffect()
+	{
+		int length = message.length();
+		for (int i = 0; i < length / 2; ++i)
+		{
+			clearScreen();
+			setRandomColor();
+
+			cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << "\t\t\t\t\t\t";
+
+
+			std::cout << std::string(i, ' ');
+
+			std::cout << message.substr(i, length - 2 * i);
+
+			resetColor();
+			std::this_thread::sleep_for(std::chrono::milliseconds(300));
+		}
+	}
+
+	void flickerEndMessage()
+	{
+		for (int i = 0; i < 6; ++i)
+		{
+			clearScreen();
+			system("color f5");
+			setRandomColor();
+			if (i % 2 == 0)
+				std::cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << "\t\t\t\t\t\t" << ">>> GAME OVER <<<\n\n";
+			resetColor();
+			std::this_thread::sleep_for(std::chrono::milliseconds(300));
+		}
+	}
+
+public:
+	CollapseAnimation(const std::string& msg) : message(msg)
+	{
+		srand(static_cast<unsigned>(time(0)));
+	}
+
+	void playAnimation()
+	{
+		system("color f5");
+		collapseEffect();
+		flickerEndMessage();
+	}
+};
+
+
+// animation after you won the game
+class CongratulationAnimation
+{
+private:
+	std::string message;
+	int sparkleCount;
+
+	void clearScreen()
+	{
+		cout << "\033[H\033[J";
+	}
+
+	void resetColor()
+	{
+		cout << "\033[0m";
+	}
+
+	void setRandomColor()
+	{
+		int color = 31 + rand() % 7;
+		cout << "\033[" << color << "m";
+	}
+
+	void letterByLetterReveal()
+	{
+		clearScreen();
+		std::cout << "\033[1;1H";
+		cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << "\t\t\t\t\t\t";
+
+		for (size_t i = 0; i < message.length(); ++i)
+		{
+			cout << message[i];
+			this_thread::sleep_for(std::chrono::milliseconds(150));
+		}
+		cout << endl;
+	}
+
+	void sparkleAnimation()
+	{
+		for (int j = 0; j < sparkleCount; ++j)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(300));
+			clearScreen();
+			cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << "\t\t\t\t\t\t";
+			for (size_t i = 0; i < message.length(); ++i)
+			{
+				if (rand() % 4 == 0 && message[i] != ' ')
+				{
+					setRandomColor();
+					cout << "*";
+				}
+				else
+				{
+					cout << message[i];
+				}
+			}
+			cout << endl;
+		}
+	}
+
+
+
+public:
+	CongratulationAnimation(const std::string& msg, int sparkles) : message(msg), sparkleCount(sparkles)
+	{
+		srand(static_cast<unsigned>(time(0)));
+	}
+
+	void playAnimation()
+	{
+		letterByLetterReveal();
+		sparkleAnimation();
+	}
+};
+
+
+
+//class to store the user guesses
+class queue
+{
+private:
+	int arr[100];
+	int front, rear;
+
+public:
+	queue()
+	{
+		front = 0;
+		rear = -1;
+
+	}
+
+	void enq(int value)
+	{
+		if (rear >= 99)
+		{
+			return;
+		}
+		arr[++rear] = value;
+	}
+
+	void deq()
+	{
+
+		system("color f5");
+		system("cls");
+		cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t\t\tEvery guess you made was a power move. " << endl;
+		cout << "\t\t\t\t\t\t\tHere are your moves:";
+		while (front <= rear)
+		{
+			cout << arr[front++] << ",";
+
+		}
+		cout << endl << endl << "Press any key to continue....";
+		_getch();
+		system("cls");
+	}
+};
+
+
+//tree for games deep details
+struct TreeNode {
+	string name;
+	int timeSpent;
+	TreeNode* child1;
+	TreeNode* child2;
+	TreeNode* child3;
+
+	TreeNode(const string& nodeName)
+		: name(nodeName), timeSpent(0), child1(nullptr), child2(nullptr), child3(nullptr) {}
+};
+
+class GameTree {
+private:
+	TreeNode* root;
+
+public:
+	GameTree() : root(nullptr) {}
+
+
+	void name(const string& userName) {
+		if (root) {
+			cout << "Tree is already initialized.\n";
+			return;
+		}
+		root = new TreeNode(userName);
+		root->child1 = new TreeNode("Easy Level");
+		root->child2 = new TreeNode("Medium Level");
+		root->child3 = new TreeNode("Hard Level");
+	}
+
+	void addTimeToRoot(int time)
+	{
+		if (root)
+			root->timeSpent += time;
+	}
+
+	void addTimeToLevel(int level, int time)
+	{
+		if (!root) return;
+		if (level == 1)
+			root->child1->timeSpent += time;
+		else if (level == 2)
+			root->child2->timeSpent += time;
+		else if (level == 3)
+			root->child3->timeSpent += time;
+	}
+
+	void displayTree() const {
+		if (!root) {
+			cout << "Tree is not initialized.\n";
+			return;
+		}
+		system("cls");
+		system("color 06");
+		cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tUser: " << root->name << "\n";
+		cout << "\t\t\t\t\tTotal Time Spent in Game: " << root->timeSpent << " seconds\n";
+		cout << "\t\t\t\t\tLevel Statistics:\n";
+		cout << "\t\t\t\t\t\t" << root->child1->name << ": " << root->child1->timeSpent << " seconds\n";
+		cout << "\t\t\t\t\t\t" << root->child2->name << ": " << root->child2->timeSpent << " seconds\n";
+		cout << "\t\t\t\t\t\t" << root->child3->name << ": " << root->child3->timeSpent << " seconds\n";
+	}
+}tree;
+
+
+//timer
+class Timer
+{
+private:
+	chrono::time_point<chrono::high_resolution_clock> startTime;
+
+public:
+	void start()
+
+	{
+		startTime = chrono::high_resolution_clock::now();
+	}
+
+	long long stop()
+	{
+		auto endTime = chrono::high_resolution_clock::now();
+		return chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
+	}
+}timer;
+
+
+
+
+
+//list to store that how many times user win or loss
+struct node
+{
+	string name;
+	node* next;
+};
+
+class list {
+private:
+	node* s, * c, * n;
+	string inputName;
+
+public:
+	list()
+	{
+		s = c = n = nullptr;
+
+	}
+
+	void create_list(string na)
+	{
+		inputName = na;
+
+		node* newNode = new node;
+		newNode->name = inputName;
+		newNode->next = nullptr;
+
+		if (s == nullptr)
+		{
+			s = newNode;
+			c = s;
+		}
+		else
+		{
+			c->next = newNode;
+			c = newNode;
+		}
+
+
+	}
+
+	void display()
+	{
+		c = s;
+		if (c == nullptr)
+		{
+			return;
+		}
+		else
+		{
+			cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tEvery victory and every loss is etched into the annals of history. " << endl;
+			cout << "\t\t\t\t\tHere’s the record of your victories and defeats throughout the game:";
+			while (c != nullptr)
+			{
+				cout << c->name << ",";
+				c = c->next;
+			}
+			cout << endl << endl << "Press any key to continue....";
+			_getch();
+		}
+
+	}
+};
+
+
+
+//my library is completed*****
+
+
+
+
+
+					//menu class for all the menu and and instructions appearing on the screen
+class manu
+{
+
+protected:
+	int choice;
+	queue que;
+	static list sharedList;
+	Timer tim;
+
+
+
+public:
+	list& getSharedList()
+	{
+		return sharedList;
+	}
+
+	void welcome()
+	{
+		GameIntro intro;
+		intro.display();
+
+	}
+
+	void rules()
+	{
+		system("color f5");
+		string gameRules[] = {
+			"\n\n"
+			"\t\t\t    #################################################################",
+			"\t\t\t    #                                                               #",
+			"\t\t\t    #                      ******************                       #",
+			"\t\t\t    #                      *                *                       #",
+			"\t\t\t    #                      *   GAME RULES : *                       #",
+			"\t\t\t    #                      *                *                       #",
+			"\t\t\t    #                      ******************                       #",
+			"\t\t\t    #                                                               #",
+			"\t\t\t    #################################################################\n\n",
+			"                             =============================================================",
+			"                             ||                     1) Easy Mode:                        ||",
+			"                             || - Guess a number between 1 and 100.                      ||",
+			"                             || - Unlimited attempts.                                    ||",
+			"                             || - Hints: Higher or lower.                                ||",
+			"                             =============================================================",
+			"                             ||                     2) Medium Mode:                      ||",
+			"                             || - Choose the range between 0 and 100.                    ||",
+			"                             || - Choose the number of attempts.                         ||",
+			"                             || - Hints: Even or odd.                                    ||",
+			"                             =============================================================",
+			"                             ||                     3) Hard Mode:                        ||",
+			"                             || - Guess a number between 1 and 100.                      ||",
+			"                             || - 3 attempts.                                            ||",
+			"                             || - Hints: Range and even/odd.                             ||",
+			"                             ============================================================="
+		};
+
+		for (const string& line : gameRules) {
+			cout << line << endl;
+			Sleep(100);
+		}
+		cout << "Press any key to continue.";
+		_getch();
+		system("cls");
+
+	}
+
+
+
+	int difficulty()
+	{
+		system("color 5f");
+		cout << "\n\n\n\n\n\n\n\n";
+		cout << "\t\t\t\t\t\t\tSelect Difficulty Level :  " << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t    1. Easy Mode   |   2. Medium Mode   " << endl
+			<< "\t\t\t\t\t\t\t           |         " << endl
+			<< "\t\t\t\t\t\t\t           |         " << endl
+			<< "\t\t\t\t\t\t\t    3. Hard Mode            " << endl
+			<< "\n\t\t\t\t\t\t Enter your choice: ";
+		cin >> choice;
+		return choice;
+	}
+
+	void start()
+	{
+		system("cls");
+		numbers nim;
+		nim.runAnimation("321");
+		system("cls");
+	}
+
+	void no()
+	{
+		cout << "Wrong Guess." << endl;
+	}
+
+	void cong()
+	{
+		system("color f5");
+		CongratulationAnimation animation("Congratulations! You won!", 10);
+		animation.playAnimation();
+		sharedList.create_list("Win");
+
+	}
+
+	void after3try()
+	{
+		system("color f5");
+		CollapseAnimation animation("You Lost");
+		animation.playAnimation();
+		sharedList.create_list("Loss");
+	}
+
+	int end()
+	{
+		int choice;
+
+		system("color 5f");
+
+
+		cout << "\n\n\n\n\n\n\n\n";
+		cout << "\t\t\t\t\t\t\tChoose your next action:  " << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t\t  |        |         |" << endl
+			<< "\t\t\t\t\t\t    1. Play Again  |     2. exit" << endl
+			<< "\t\t\t\t\t\t\t           |         " << endl
+			<< "\t\t\t\t\t\t\t           |         " << endl
+			<< "\t\t\t\t\t\t\t    3. Enter Mini-Game            " << endl
+			<< "\n\t\t\t\t\t\t Enter your choice: ";
+		cin >> choice;
+		system("cls");
+		return choice;
+	}
+
+	void mini_game()
+	{
+		system("color f5");
+		Animation im;
+		im.runAnimation("MINI-GAME");
+		cout << endl << endl << endl << endl << endl << endl;
+		printWithAnimation("\t\t\t\t\t\t\tPick a number between 1 and 10 and keep it in your mind.", 100);
+		printWithAnimation("\t\t\t\t\t\t\tNow, follow my instructions carefully:", 100);
+		printWithAnimation("\t\t\t\t\t\t\t1. Double your chosen number.", 100);
+		this_thread::sleep_for(chrono::seconds(3));
+		printWithAnimation("\t\t\t\t\t\t\t2. Add 8 to your result.", 100);
+		this_thread::sleep_for(chrono::seconds(3));
+		printWithAnimation("\t\t\t\t\t\t\t3. Divide the result by 2.", 100);
+		this_thread::sleep_for(chrono::seconds(3));
+		printWithAnimation("\t\t\t\t\t\t\t4. Subtract your original number from the result.", 100);
+		this_thread::sleep_for(chrono::seconds(3));
+
+		this_thread::sleep_for(chrono::seconds(3));
+
+		printWithAnimation("\t\t\t\t\t\t\tThe moment of truth... the result is...", 100);
+		printWithAnimation("\t\t\t\t\t\t\tThe answer is ............. 4", 100);
+
+		printWithAnimation("\n\n\nPress any key to continue....", 100);
+		_getch();
+		system("cls");
+
+
+
+	}
+
+	void now(int t)
+	{
+		while (true)
+		{
+			if (t == 1)
+			{
+				break;
+			}
+			else if (t == 2)
+			{
+				int tem;
+				tem = timer.stop();
+				tree.addTimeToRoot(tem);
+				sharedList.display();
+				tree.displayTree();
+				_getch();
+				exit(0);
+			}
+			else if (t == 3)
+			{
+				mini_game();
+				break;
+			}
+			else
+			{
+				cout << endl << "Invalid Input. Try again." << endl;
+				continue;
+			}
+
+			system("cls");
+		}
+	}
+
+
+
+};
+
+
+//define outside of the menu class so that it won't reset after game and store data properly
+list manu::sharedList;
+
+
+//class for easy level inhareting menu
+class level_easy : public manu
+{
+
+
+
+private:
+
+	int random_num;
+	int guess;
+public:
+	level_easy()
+	{
+		srand(time(0));
+		random_num = 1 + rand() % (100 - 1 + 1);
+	}
+
+
+	int easy_game()
+	{
+		tim.start();
+		while (true)
+		{
+			cout << "Enter your guess : ";
+			cin >> guess;
+			que.enq(guess);
+
+			if (guess == random_num)
+			{
+				cong();
+				break;
+			}
+			else if (guess < random_num)
+			{
+				cout << "Hint :\n \t\tGuess higher!" << endl << endl;
+			}
+			else
+			{
+				cout << "Hint :\n \t\tGuess lower!" << endl << endl;
+			}
+		}
+		que.deq();
+		int tem;
+		tem = tim.stop();
+		return tem;
+	}
+
+};
+
+
+//class for medium level inhareting menu
+class level_medium : public manu
+{
+private:
+	int random_num;
+	int input;
+	int itration;
+	int from;
+	int to;
+
+public:
+	void in()
+	{
+		cout << "Enter the the lower boundry of range: ";
+		cin >> from;
+		cout << "Enter the the upper boundry of range: ";
+		cin >> to;
+		cout << endl;
+		cout << "Enter the no of times you want to try: ";
+		cin >> itration;
+		cout << endl;
+	}
+
+	level_medium()
+	{
+		in();
+		random_num = from + rand() % (to - from + 1);
+	}
+
+
+	void hint()
+	{
+		cout << endl << "Your hints are: " << endl;
+		if (random_num % 2 == 0)
+		{
+			cout << "\t1. Number is even." << endl;
+		}
+		else
+		{
+			cout << "\t1. Number is oddd." << endl;
+		}
+	}
+
+	int game()
+	{
+		int i = 0;
+		while (i < itration)
+		{
+			tim.start();
+			cout << endl << "/tEnter your guess: ";
+			cin >> input;
+			que.enq(input);
+
+			if (input == random_num)
+			{
+				cong();
+				que.deq();
+				int tem;
+				tem = tim.stop();
+				return tem;
+			}
+			else
+			{
+				no();
+			}
+			i++;
+		}
+		after3try();
+		que.deq();
+		int tem;
+		tem = tim.stop();
+		return tem;
+	}
+
+};
+
+
+//class for hard level inhareting menu
+class level_hard : public manu
+{
+private:
+	int random_num;
+	int input;
+
+public:
+
+	level_hard()
+	{
+		random_num = 1 + rand() % (100 - 1 + 1);
+	}
+
+	void hint()
+	{
+		cout << "Your hints are: " << endl;
+		if (random_num % 2 == 0)
+		{
+			cout << "1. Number is even." << endl;
+		}
+		else
+		{
+			cout << "1. Number is oddd." << endl;
+		}
+
+
+		if (random_num <= 20)
+		{
+			cout << "2. Number is between 0-20." << endl;
+		}
+		else if (random_num <= 40)
+		{
+			cout << "2. Number is between 20-40." << endl;
+		}
+		else if (random_num <= 60)
+		{
+			cout << "2. Number is between 40-60." << endl;
+		}
+		else if (random_num <= 80)
+		{
+			cout << "2. Number is between 60-80." << endl;
+		}
+		else if (random_num <= 100)
+		{
+			cout << "2. Number is between 80-100." << endl;
+		}
+	}
+
+	int game()
+	{
+		int i = 0;
+		while (i < 3)
+		{
+			tim.start();
+			cout << "Enter your guess: ";
+			cin >> input;
+			que.enq(input);
+
+			if (input == random_num)
+			{
+				cong();
+				que.deq();
+				int tem;
+				tem = tim.stop();
+				return tem;
+			}
+			else
+			{
+				no();
+			}
+			i++;
+		}
+		after3try();
+		que.deq();
+		int tem;
+		tem = tim.stop();
+		return tem;
+	}
+
+};
+
+
+
+//main function in which every choice retur and objects are made cnd funtion are called
+int main()
+{
+
+	timer.start();
+	system("color 06");
+
+
+	cout << "\n\n\n\n\n\n\n\n\n\n";
+	cout << "\t\t\t\t\t\tEnter your details: " << endl;
+	cout << "\t\t\t\t\t\tName: ";
+	string temp;
+	getline(cin, temp);
+	tree.name(temp);
+
+
+
+	Animation anim;
+	anim.runAnimation("WELCOME");
+
+	manu menu;
+
+	menu.welcome();
+	menu.rules();
+
+	int lastchoice;
+
+	while (true)
+	{
+		int choice;
+		choice = menu.difficulty();
+
+
+		if (choice == 1)
+		{
+			menu.start();
+			level_easy ease;
+			int t;
+			t = ease.easy_game();
+			tree.addTimeToLevel(1, t);
+			lastchoice = menu.end();
+			menu.now(lastchoice);
+		}
+		else if (choice == 2)
+		{
+			menu.start();
+			level_medium medium;
+			medium.hint();
+			int t;
+			t = medium.game();
+			tree.addTimeToLevel(2, t);
+			lastchoice = menu.end();
+			menu.now(lastchoice);
+		}
+		else if (choice == 3)
+		{
+			menu.start();
+			level_hard hard;
+			hard.hint();
+			int t;
+			t = hard.game();
+			tree.addTimeToLevel(3, t);
+			lastchoice = menu.end();
+			menu.now(lastchoice);
+		}
+		else
+		{
+			cout << "Invalid choice. Try again." << endl;
+
+		}
+
+	}
+
+	return 0;
+}
